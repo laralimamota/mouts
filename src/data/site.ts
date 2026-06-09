@@ -179,22 +179,23 @@ export const segments = [
 ] as const;
 
 /**
- * Logos de clientes reais — PNGs brancos sobre transparente, servidos pelo
- * próprio cliente. Nome confirmado apenas para Monte Verde; os demais usam
- * alt genérico até confirmação dos nomes oficiais.
+ * Logos de clientes reais — PNGs brancos sobre transparente, baixados do site
+ * do cliente para `public/clientes/` (auto-hospedados: confiáveis e rápidos,
+ * sem depender do servidor de origem). Nomes confirmados: Monte Verde e
+ * COMIGO; os demais usam alt genérico até confirmação dos nomes oficiais.
  */
 export const clientLogos = [
-  { name: "Agropecuária Monte Verde", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-17-1024x1024.png" },
-  { name: "COMIGO", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/Logo-Branca-scaled-1-1024x287.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-8-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-9-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-10-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-11-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-12-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-13-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-14-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-15-1024x1024.png" },
-  { name: "", src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/CLIENTES-16-1024x1024.png" },
+  { name: "Agropecuária Monte Verde", src: "/clientes/cli-17.png" },
+  { name: "COMIGO", src: "/clientes/comigo.png" },
+  { name: "", src: "/clientes/cli-8.png" },
+  { name: "", src: "/clientes/cli-9.png" },
+  { name: "", src: "/clientes/cli-10.png" },
+  { name: "", src: "/clientes/cli-11.png" },
+  { name: "", src: "/clientes/cli-12.png" },
+  { name: "", src: "/clientes/cli-13.png" },
+  { name: "", src: "/clientes/cli-14.png" },
+  { name: "", src: "/clientes/cli-15.png" },
+  { name: "", src: "/clientes/cli-16.png" },
 ] as const;
 
 /** Bloco de vídeo em loop (estilo referência: vídeo mudo rodando + texto). */

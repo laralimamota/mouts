@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────
+   Design tokens — direção estética inspirada em sand.black:
+   preto absoluto, off-white quente, um único acento âmbar (CINE/
+   cinema) usado com parcimônia. Tipografia grotesca pesada + corpo
+   neutro. Muito respiro, ritmo vertical amplo.
+   Tailwind v4: tokens expostos como utilities via @theme.
+   ─────────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink: #0a0a0a; /* fundo quase-preto, levemente quente */
+  --color-ink-soft: #121110; /* superfícies elevadas (cards) */
+  --color-bone: #f4f1ea; /* off-white quente — texto principal */
+  --color-ash: #9a958c; /* texto secundário / labels */
+  --color-ash-dim: #6b6760; /* detalhes, bordas-texto */
+  --color-accent: #88a98c; /* verde pastel escuro (sage) — acento da marca */
+  --color-accent-soft: #b4ccb6;
+  --color-line: #20231f; /* hairlines sobre o preto (neutro levemente verde) */
+
+  --font-display: "Archivo", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* ritmo de seção */
+  --section-y: clamp(3rem, 7vw, 6.5rem);
+}
+
+/* ── base ─────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* foco visível e acessível em tudo que é interativo */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* marca registrada estilo editorial (©) — pequena, sobrescrita, âmbar */
+.reg {
+  font-feature-settings: "sups" 0;
+  color: var(--color-accent);
+  font-size: 0.45em;
+  vertical-align: 0.7em;
+  font-weight: 500;
+  margin-left: 0.04em;
+}
+
+/* ── animações sutis ──────────────────────────────────────────── */
+/* Marquee horizontal contínuo (zero JS) */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee-x var(--marquee-duration, 32s) linear infinite;
+}
+
+/* Reveal on scroll via scroll-driven animations (zero JS).
+   Fallback: navegadores sem suporte mostram o conteúdo normalmente. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 22%;
+  }
+}
+
+/* respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* grão de filme sutil sobre o fundo (puramente decorativo) */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+/* esconde a scrollbar do carrossel horizontal (mantém o scroll funcional) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

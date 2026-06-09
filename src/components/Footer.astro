@@ -1,0 +1,96 @@
+---
+import { site, nav, whatsappHref } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line bg-ink">
+  <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+    <div class="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+      <div>
+        <a href="#topo" class="inline-flex items-center" aria-label={`${site.name} — início`}>
+          <img
+            src="/cine-logo.png"
+            alt={`${site.name} — produtora audiovisual`}
+            width="72"
+            height="72"
+            class="h-14 w-auto"
+          />
+        </a>
+        <p class="mt-4 max-w-xs text-base leading-relaxed text-ash">
+          {site.tagline}. Produtora de audiovisual em {site.city}–{site.state}.
+        </p>
+      </div>
+
+      <nav aria-label="Rodapé">
+        <h2 class="text-xs uppercase tracking-[0.2em] text-ash-dim">Navegar</h2>
+        <ul class="mt-4 flex flex-col gap-3">
+          {
+            nav.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-ash transition-colors hover:text-bone"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="text-xs uppercase tracking-[0.2em] text-ash-dim">Contato</h2>
+        <ul class="mt-4 flex flex-col gap-3 text-sm">
+          <li>
+            <a
+              href={whatsappHref()}
+              class="text-ash transition-colors hover:text-bone"
+            >
+              WhatsApp {site.whatsapp.display}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${site.email}`}
+              class="text-ash transition-colors hover:text-bone"
+            >
+              {site.email}
+            </a>
+          </li>
+          <li class="text-ash">{site.city} — {site.state}</li>
+          <li>
+            <a
+              href={site.social.instagram}
+              target="_blank"
+              rel="noopener"
+              class="text-ash transition-colors hover:text-bone"
+            >
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.social.tiktok}
+              target="_blank"
+              rel="noopener"
+              class="text-ash transition-colors hover:text-bone"
+            >
+              TikTok
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="mt-14 flex flex-col gap-3 border-t border-line pt-8 text-sm text-ash-dim sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>{site.name} · Todos os direitos reservados © {year}</p>
+      <p class="font-display font-medium tracking-wide text-ash">
+        EXPERIÊNCIA QUE GERA VALOR
+        <span class="reg" aria-hidden="true">©</span>
+      </p>
+    </div>
+  </div>
+</footer>

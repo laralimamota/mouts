@@ -1,0 +1,37 @@
+---
+import { marquee } from "../data/site";
+
+interface Props {
+  /** segundos por ciclo; maior = mais lento */
+  duration?: number;
+}
+const { duration = 34 } = Astro.props;
+
+// Duplicamos a lista para o loop ser contínuo (translateX -50%).
+const items = [...marquee, ...marquee];
+---
+
+<section
+  aria-hidden="true"
+  class="border-y border-line bg-ink py-5 select-none"
+>
+  <div class="relative flex overflow-hidden">
+    <div
+      class="marquee-track flex shrink-0 items-center gap-10 pr-10"
+      style={`--marquee-duration:${duration}s`}
+    >
+      {
+        items.map((word) => (
+          <span class="flex items-center gap-10">
+            <span class="font-display text-2xl font-extrabold tracking-tight text-bone/90 sm:text-4xl">
+              {word}
+            </span>
+            <span class="text-accent" aria-hidden="true">
+              ✦
+            </span>
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

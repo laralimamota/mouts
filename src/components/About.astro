@@ -1,0 +1,39 @@
+---
+import Section from "./Section.astro";
+import { about, site } from "../data/site";
+---
+
+<Section id="sobre" label={about.label}>
+  <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+    <h2
+      class="reveal font-display text-[clamp(2rem,5vw,3.75rem)] font-extrabold leading-[1.02] tracking-tight text-bone"
+    >
+      {about.heading}
+    </h2>
+
+    <div class="reveal flex flex-col gap-6">
+      {
+        about.body.map((p) => (
+          <p class="text-lg leading-relaxed text-ash">{p}</p>
+        ))
+      }
+
+      <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-line pt-8">
+        <div>
+          <dt class="text-xs uppercase tracking-[0.2em] text-ash-dim">Sede</dt>
+          <dd class="mt-1 font-display text-2xl font-bold text-bone">
+            {site.city}–{site.state}
+          </dd>
+        </div>
+        <div class="col-span-2">
+          <dt class="text-xs uppercase tracking-[0.2em] text-ash-dim">
+            Fundador
+          </dt>
+          <dd class="mt-1 font-display text-2xl font-bold text-bone">
+            {site.founder}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</Section>

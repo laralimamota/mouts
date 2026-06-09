@@ -1,0 +1,37 @@
+---
+import type { Work } from "../data/site";
+
+interface Props {
+  work: Work;
+}
+const { work } = Astro.props;
+---
+
+<article
+  class="group w-[80vw] max-w-[440px] shrink-0 snap-start overflow-hidden rounded-2xl border border-line bg-ink-soft sm:w-[420px]"
+>
+  <div class="relative overflow-hidden">
+    <video
+      class="aspect-video w-full object-cover"
+      controls
+      playsinline
+      preload="none"
+      poster={work.poster ?? "/work-poster.svg"}
+      aria-label={`Case — ${work.title}`}
+    >
+      <source src={work.src} type={work.type} />
+      Seu navegador não suporta vídeo HTML5.
+    </video>
+  </div>
+
+  <div class="flex items-center justify-between gap-4 p-4">
+    <h3 class="font-display text-base font-bold tracking-tight text-bone">
+      {work.title}
+    </h3>
+    <span
+      class="shrink-0 rounded-full border border-line px-3 py-1 text-[0.7rem] font-medium uppercase tracking-wider text-ash"
+    >
+      {work.category}
+    </span>
+  </div>
+</article>

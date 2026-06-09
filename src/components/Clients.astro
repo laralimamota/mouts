@@ -1,0 +1,81 @@
+---
+import Section from "./Section.astro";
+import { segments, stats, clientLogos } from "../data/site";
+
+const hasPlaceholder = stats.some((s) => s.placeholder);
+---
+
+<Section id="clientes" label="Clientes">
+  <div class="grid gap-12 lg:grid-cols-[0.8fr_1.6fr] lg:gap-16">
+    <div class="reveal">
+      <h2
+        class="font-display text-[clamp(2.25rem,5vw,4rem)] font-extrabold leading-[0.98] tracking-tight text-bone"
+      >
+        Nossos<br />clientes
+      </h2>
+      <p class="mt-6 max-w-xs text-base leading-relaxed text-ash">
+        Marcas que enxergam o audiovisual como investimento estratégico.
+      </p>
+      <ul class="mt-8 flex flex-wrap gap-2.5">
+        {
+          segments.map((segment) => (
+            <li class="rounded-full border border-line px-4 py-2 text-xs font-medium text-ash">
+              {segment}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <!-- Grid de logos (PNGs brancos reais, atenuados; acendem no hover) -->
+    <ul
+      class="reveal grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-4"
+    >
+      {
+        clientLogos.map((logo) => (
+          <li class="flex items-center justify-center bg-ink p-8 sm:p-10">
+            <img
+              src={logo.src}
+              alt={logo.name || "Logo de cliente da CINE Produtora"}
+              loading="lazy"
+              decoding="async"
+              width="160"
+              height="160"
+              class="h-16 w-auto max-w-full object-contain opacity-55 transition-opacity duration-300 hover:opacity-100 sm:h-20"
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <!-- Números de destaque -->
+  <dl
+    class="reveal mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3"
+  >
+    {
+      stats.map((stat) => (
+        <div class="bg-ink p-7 sm:p-9">
+          <dt class="text-xs uppercase tracking-[0.2em] text-ash-dim">
+            {stat.label}
+            {stat.placeholder && (
+              <span class="ml-1 align-super text-[0.6rem] text-accent">*</span>
+            )}
+          </dt>
+          <dd class="mt-2 font-display text-4xl font-black tracking-tight text-bone sm:text-5xl">
+            {stat.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  {
+    hasPlaceholder && (
+      <p class="mt-4 text-xs text-ash-dim">
+        * Métricas ilustrativas (placeholder) — substituir pelos números reais
+        da CINE antes de publicar.
+      </p>
+    )
+  }
+</Section>

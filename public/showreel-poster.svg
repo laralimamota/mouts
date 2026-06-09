@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#1c1a16"/>
+      <stop offset="60%" stop-color="#0d0c0a"/>
+      <stop offset="100%" stop-color="#070605"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <rect width="1280" height="6" fill="#0a0a0a" y="0"/>
+  <rect width="1280" height="6" fill="#0a0a0a" y="714"/>
+  <text x="640" y="330" font-family="Archivo, Arial, sans-serif" font-size="120"
+        font-weight="900" text-anchor="middle" fill="#f4f1ea" letter-spacing="-4">SHOWREEL</text>
+  <text x="640" y="410" font-family="Inter, Arial, sans-serif" font-size="30"
+        font-weight="500" text-anchor="middle" fill="#9a958c" letter-spacing="6">CINE PRODUTORA</text>
+  <circle cx="640" cy="540" r="44" fill="none" stroke="#88a98c" stroke-width="3"/>
+  <path d="M626 518 l34 22 -34 22 z" fill="#88a98c"/>
+</svg>

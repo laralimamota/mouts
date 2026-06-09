@@ -1,0 +1,88 @@
+---
+import Section from "./Section.astro";
+import WorkCard from "./WorkCard.astro";
+import { works, whatsappHref } from "../data/site";
+---
+
+<Section id="trabalhos" label="Trabalhos">
+  <div
+    class="reveal mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+  >
+    <h2
+      class="max-w-2xl font-display text-[clamp(2rem,5vw,3.75rem)] font-extrabold leading-[1.02] tracking-tight text-bone"
+    >
+      Cases que confiaram em nosso trabalho.
+    </h2>
+
+    <div class="flex items-center gap-4">
+      <p class="max-w-xs text-base leading-relaxed text-ash">
+        Empresas que enxergam o audiovisual como investimento estratégico.
+      </p>
+      <!-- Setas de navegação do carrossel -->
+      <div class="flex shrink-0 gap-2">
+        <button
+          type="button"
+          data-carousel-prev
+          aria-label="Anterior"
+          class="grid h-11 w-11 place-items-center rounded-full border border-line text-bone transition-colors hover:border-accent hover:text-accent"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button
+          type="button"
+          data-carousel-next
+          aria-label="Próximo"
+          class="grid h-11 w-11 place-items-center rounded-full border border-line text-bone transition-colors hover:border-accent hover:text-accent"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</Section>
+
+<!-- Carrossel lateral (scroll nativo + snap, vídeos com áudio) -->
+<div class="reveal mx-auto max-w-7xl">
+  <div
+    data-carousel-track
+    class="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:px-8"
+    role="list"
+    aria-label="Cases em vídeo — role horizontalmente"
+    tabindex="0"
+  >
+    {works.map((work) => <WorkCard work={work} />)}
+    <div class="shrink-0" aria-hidden="true" style="width: 1px"></div>
+  </div>
+</div>
+
+<div class="mx-auto max-w-7xl px-5 sm:px-8">
+  <div class="reveal mt-10 flex justify-center">
+    <a
+      href={whatsappHref(
+        "Olá, vim do site e gostaria de me tornar um case da CINE!",
+      )}
+      class="rounded-full bg-accent px-7 py-3.5 text-base font-semibold text-ink transition-transform hover:-translate-y-0.5"
+    >
+      Quero me tornar um case
+    </a>
+  </div>
+</div>
+
+<script>
+  const track = document.querySelector<HTMLElement>("[data-carousel-track]");
+  if (track) {
+    const step = () => {
+      const card = track.querySelector<HTMLElement>(":scope > *");
+      const gap = parseFloat(getComputedStyle(track).columnGap || "20") || 20;
+      return card ? card.offsetWidth + gap : track.clientWidth * 0.8;
+    };
+    const scrollBy = (dir: number) =>
+      track.scrollBy({ left: dir * step(), behavior: "smooth" });
+    document
+      .querySelector("[data-carousel-prev]")
+      ?.addEventListener("click", () => scrollBy(-1));
+    document
+      .querySelector("[data-carousel-next]")
+      ?.addEventListener("click", () => scrollBy(1));
+  }
+</script>

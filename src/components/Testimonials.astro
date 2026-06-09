@@ -1,0 +1,30 @@
+---
+import Section from "./Section.astro";
+import { testimonials } from "../data/site";
+---
+
+<Section id="depoimentos" label="Depoimentos">
+  <div class="grid gap-6 md:grid-cols-2">
+    {
+      testimonials.map((t) => (
+        <figure class="reveal relative flex flex-col rounded-2xl border border-line bg-ink-soft p-8 sm:p-10">
+          {t.placeholder && (
+            <span class="absolute right-5 top-5 rounded-full border border-accent/40 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-wider text-accent">
+              Placeholder
+            </span>
+          )}
+          <span class="font-display text-5xl leading-none text-accent" aria-hidden="true">
+            &ldquo;
+          </span>
+          <blockquote class="mt-4 text-lg leading-relaxed text-bone">
+            {t.quote}
+          </blockquote>
+          <figcaption class="mt-6 border-t border-line pt-5 text-sm">
+            <span class="font-semibold text-bone">{t.author}</span>
+            <span class="block text-ash">{t.role}</span>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</Section>

@@ -1,0 +1,28 @@
+---
+interface Props {
+  id?: string;
+  /** rótulo curto (estilo editorial, ex: "Sobre", "Serviços") */
+  label?: string;
+  class?: string;
+  /** remove o padding vertical padrão quando false */
+  padded?: boolean;
+}
+const { id, label, class: className = "", padded = true } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["relative scroll-mt-24", padded && "py-[var(--section-y)]", className]}
+>
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    {
+      label && (
+        <p class="reveal mb-10 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.25em] text-ash">
+          <span class="inline-block h-px w-8 bg-accent" aria-hidden="true" />
+          {label}
+        </p>
+      )
+    }
+    <slot />
+  </div>
+</section>

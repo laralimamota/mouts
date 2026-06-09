@@ -1,0 +1,108 @@
+---
+import "../styles/global.css";
+import { site } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${site.name} — ${site.tagline}`,
+  description = site.description,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const ogImage = new URL("/og.svg", Astro.site ?? site.url).href;
+
+// Dados estruturados — ajudam SEO local (produtora de vídeo em Rio Verde-GO).
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProductionCompany",
+  name: site.name,
+  founder: site.founder,
+  foundingDate: String(site.foundedYear),
+  description: site.description,
+  url: site.url,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.city,
+    addressRegion: site.state,
+    addressCountry: "BR",
+  },
+  areaServed: "BR",
+  telephone: `+${site.whatsapp.number}`,
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fontes: preconnect + display=swap para não bloquear render -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="grain">
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:font-medium focus:text-ink"
+    >
+      Pular para o conteúdo
+    </a>
+    <slot />
+    {/*
+      Progressive enhancement (única ~1KB de JS do site):
+      toca vídeos [data-autoplay] só quando visíveis e pausa fora da tela,
+      poupando CPU/banda. Sem JS, o atributo `autoplay` já cuida do loop.
+    */}
+    <script>
+      const vids = document.querySelectorAll<HTMLVideoElement>("video[data-autoplay]");
+      if (vids.length && "IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              const v = e.target as HTMLVideoElement;
+              if (e.isIntersecting) {
+                v.play().catch(() => {});
+              } else {
+                v.pause();
+              }
+            }
+          },
+          { threshold: 0.25 },
+        );
+        vids.forEach((v) => io.observe(v));
+      }
+    </script>
+  </body>
+</html>

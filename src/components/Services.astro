@@ -20,7 +20,7 @@ import { services, whatsappHref } from "../data/site";
     </header>
 
     <div
-      class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+      class="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5"
     >
       {
         services.map((service) => (
@@ -45,11 +45,11 @@ import { services, whatsappHref } from "../data/site";
               aria-hidden="true"
             />
 
-            <div class="absolute inset-x-0 bottom-0 p-6 text-center">
-              <h3 class="font-display text-xl font-bold leading-tight tracking-tight text-bone">
+            <div class="absolute inset-x-0 bottom-0 p-4 text-center sm:p-6">
+              <h3 class="font-display text-base font-bold leading-tight tracking-tight text-bone sm:text-lg lg:text-xl">
                 {service.title}
               </h3>
-              <p class="mx-auto mt-2 max-w-[28ch] text-sm leading-relaxed text-ash transition-colors group-hover:text-bone/90">
+              <p class="mx-auto mt-2 max-w-[28ch] text-xs leading-relaxed text-ash transition-colors group-hover:text-bone/90 sm:text-sm">
                 {service.description}
               </p>
             </div>

@@ -7,17 +7,17 @@ const year = new Date().getFullYear();
   <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
     <div class="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
       <div>
-        <a href="#topo" class="inline-flex items-center" aria-label={`${site.name} — início`}>
+        <a href="#topo" class="inline-flex items-center" aria-label={`${site.name}, início`}>
           <img
             src="/cine-logo.png"
-            alt={`${site.name} — produtora audiovisual`}
+            alt={`${site.name}, produtora audiovisual`}
             width="72"
             height="72"
             class="h-14 w-auto"
           />
         </a>
         <p class="mt-4 max-w-xs text-base leading-relaxed text-ash">
-          {site.tagline}. Produtora de audiovisual em {site.city}–{site.state}.
+          {site.tagline}. Produtora de audiovisual com estética cinematográfica.
         </p>
       </div>
 
@@ -47,7 +47,7 @@ const year = new Date().getFullYear();
               href={whatsappHref()}
               class="text-ash transition-colors hover:text-bone"
             >
-              WhatsApp {site.whatsapp.display}
+              WhatsApp
             </a>
           </li>
           <li>
@@ -58,7 +58,7 @@ const year = new Date().getFullYear();
               {site.email}
             </a>
           </li>
-          <li class="text-ash">{site.city} — {site.state}</li>
+          <li class="text-ash">{site.city}, {site.state}</li>
           <li>
             <a
               href={site.social.instagram}
@@ -67,16 +67,6 @@ const year = new Date().getFullYear();
               class="text-ash transition-colors hover:text-bone"
             >
               Instagram
-            </a>
-          </li>
-          <li>
-            <a
-              href={site.social.tiktok}
-              target="_blank"
-              rel="noopener"
-              class="text-ash transition-colors hover:text-bone"
-            >
-              TikTok
             </a>
           </li>
         </ul>

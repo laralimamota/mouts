@@ -12,28 +12,24 @@ import { about, site } from "../data/site";
     </h2>
 
     <div class="reveal flex flex-col gap-6">
-      {
-        about.body.map((p) => (
-          <p class="text-lg leading-relaxed text-ash">{p}</p>
-        ))
-      }
-
-      <dl class="mt-4 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-line pt-8">
-        <div>
-          <dt class="text-xs uppercase tracking-[0.2em] text-ash-dim">Sede</dt>
-          <dd class="mt-1 font-display text-2xl font-bold text-bone">
-            {site.city}–{site.state}
-          </dd>
-        </div>
-        <div class="col-span-2">
-          <dt class="text-xs uppercase tracking-[0.2em] text-ash-dim">
-            Fundador
-          </dt>
-          <dd class="mt-1 font-display text-2xl font-bold text-bone">
-            {site.founder}
-          </dd>
-        </div>
-      </dl>
+      <p class="text-lg leading-relaxed text-ash">
+        A CINE Produtora nasceu em {site.foundedYear}, pelas lentes de{" "}
+        <a
+          href={site.social.founderInstagram}
+          target="_blank"
+          rel="noopener"
+          class="text-[1.12em] font-bold text-bone underline decoration-accent decoration-2 underline-offset-4 transition-colors hover:text-accent"
+        >
+          {site.founder}.
+        </a> Começamos registrando grandes momentos pessoais e, a partir de
+        2019, viramos completamente a chave para o universo corporativo e do
+        agronegócio.
+      </p>
+      <p class="text-lg leading-relaxed text-ash">
+        Hoje somos especialistas em transformar a essência das marcas em
+        narrativas audiovisuais estratégicas, unindo linguagem de cinema,
+        agilidade de entrega e foco em resultado para o seu negócio.
+      </p>
     </div>
   </div>
 </Section>

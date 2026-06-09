@@ -17,7 +17,7 @@ const { work } = Astro.props;
       playsinline
       preload="none"
       poster={work.poster ?? "/work-poster.svg"}
-      aria-label={`Case — ${work.title}`}
+      aria-label={`Case: ${work.title}`}
     >
       <source src={work.src} type={work.type} />
       Seu navegador não suporta vídeo HTML5.

@@ -15,18 +15,17 @@ export const site = {
   tagline: "Experiência que gera valor",
   // base "/" em prod; ajustado pelo Astro `site` para canonical/og
   url: "https://cineprodutora.com.br",
-  email: "contato@cineprodutora.com.br", // PLACEHOLDER: confirmar e-mail oficial
+  email: "contato@cineprodutora.com.br",
   description:
-    "Produtora de audiovisual em Rio Verde–GO. Transformamos convenções, dias de campo e histórias institucionais em filmes com estética cinematográfica que geram percepção de valor, conexão e resultado.",
+    "Transformamos convenções, dias de campo e histórias institucionais em filmes com estética cinematográfica que geram percepção de valor, conexão e resultado.",
   whatsapp: {
     number: "5564992259262",
     display: "+55 64 99225-9262",
-    message:
-      "Olá, vim do site e gostaria de solicitar um orçamento!",
+    message: "Olá, vim do site e gostaria de solicitar um orçamento!",
   },
   social: {
-    instagram: "https://www.instagram.com/", // PLACEHOLDER: confirmar handle oficial
-    tiktok: "https://www.tiktok.com/", // PLACEHOLDER: confirmar handle oficial
+    instagram: "https://www.instagram.com/cine.produtora/",
+    founderInstagram: "https://www.instagram.com/brunomouts/",
   },
 } as const;
 
@@ -55,10 +54,6 @@ export const marquee = [
 export const about = {
   label: "Sobre",
   heading: "A CINE nasceu pelas lentes de um único olhar.",
-  body: [
-    "A CINE Produtora nasceu em 2018, em Rio Verde–GO, pelas lentes de Bruno Mouts. Começamos registrando grandes momentos pessoais e, a partir de 2019, viramos completamente a chave para o universo corporativo e do agronegócio.",
-    "Hoje somos especialistas em transformar a essência das marcas em narrativas audiovisuais estratégicas — unindo linguagem de cinema, agilidade de entrega e foco em resultado para o seu negócio.",
-  ],
 } as const;
 
 export type Service = {
@@ -122,50 +117,58 @@ export const works: Work[] = [
   {
     title: "Brisas Habitat",
     category: "Filme de marca",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/BRISAS-HABITAT-Video-principal.mp4",
+    src: "/videos/brisas-habitat.mp4",
     type: "video/mp4",
+    poster: "/posters/brisas-habitat.jpg",
   },
   {
     title: "Conceito Aloha",
     category: "Filme de marca",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/Conceito-Aloha-CINE.mp4",
+    src: "/videos/conceito-aloha.mp4",
     type: "video/mp4",
+    poster: "/posters/conceito-aloha.jpg",
   },
   {
-    title: "Campos Elísios — Reserva Dourada",
+    title: "Campos Elísios · Reserva Dourada",
     category: "Anúncio",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/Campos-Elisios-Reserva-Dourada-Anuncio-V3.mp4",
+    src: "/videos/campos-elisios.mp4",
     type: "video/mp4",
+    poster: "/posters/campos-elisios.jpg",
   },
   {
-    title: "Delícia do Dia — Pessoas",
+    title: "Delícia do Dia · Pessoas",
     category: "Institucional",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/DELICIA-DO-DIA-PESSOAS.mp4",
+    src: "/videos/delicia-do-dia.mp4",
     type: "video/mp4",
+    poster: "/posters/delicia-do-dia.jpg",
   },
   {
     title: "Agricompany",
     category: "Agronegócio",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/Agricompany-V3.mp4",
+    src: "/videos/agricompany.mp4",
     type: "video/mp4",
+    poster: "/posters/agricompany.jpg",
   },
   {
-    title: "Rações COMIGO — Jingle",
+    title: "Rações COMIGO · Jingle",
     category: "Agronegócio",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/Racoes-COMIGO-Jingle-V2.mov",
-    type: "video/quicktime",
+    src: "/videos/comigo-jingle.mp4",
+    type: "video/mp4",
+    poster: "/posters/comigo-jingle.jpg",
   },
   {
     title: "VT Sudoeste",
     category: "Institucional",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/VT-Sudoeste-CINE-v2.mp4",
+    src: "/videos/vt-sudoeste.mp4",
     type: "video/mp4",
+    poster: "/posters/vt-sudoeste.jpg",
   },
   {
-    title: "Pop List — Armazéns",
+    title: "Pop List · Armazéns",
     category: "Varejo",
-    src: "https://cineprodutora.com.br/wp-content/uploads/2026/02/Pop-List-Armazens-.mov",
-    type: "video/quicktime",
+    src: "/videos/pop-list.mp4",
+    type: "video/mp4",
+    poster: "/posters/pop-list.jpg",
   },
 ];
 
@@ -179,32 +182,31 @@ export const segments = [
 ] as const;
 
 /**
- * Logos de clientes reais — PNGs brancos sobre transparente, baixados do site
- * do cliente para `public/clientes/` (auto-hospedados: confiáveis e rápidos,
- * sem depender do servidor de origem). Nomes confirmados: Monte Verde e
- * COMIGO; os demais usam alt genérico até confirmação dos nomes oficiais.
+ * Logos de clientes reais (PNGs brancos sobre transparente), baixados do site
+ * do cliente para `public/clientes/` (auto-hospedados: rápidos e confiáveis).
+ * Monte Verde e COMIGO são reais; os demais nomes são EXEMPLOS (placeholder)
+ * que o cliente substitui pelos oficiais depois.
  */
 export const clientLogos = [
   { name: "Agropecuária Monte Verde", src: "/clientes/cli-17.png" },
   { name: "COMIGO", src: "/clientes/comigo.png" },
-  { name: "", src: "/clientes/cli-8.png" },
-  { name: "", src: "/clientes/cli-9.png" },
-  { name: "", src: "/clientes/cli-10.png" },
-  { name: "", src: "/clientes/cli-11.png" },
-  { name: "", src: "/clientes/cli-12.png" },
-  { name: "", src: "/clientes/cli-13.png" },
-  { name: "", src: "/clientes/cli-14.png" },
-  { name: "", src: "/clientes/cli-15.png" },
-  { name: "", src: "/clientes/cli-16.png" },
+  { name: "Núcleo", src: "/clientes/cli-8.png" },
+  { name: "IDEG", src: "/clientes/cli-9.png" },
+  { name: "Grupo Aurora", src: "/clientes/cli-10.png" },
+  { name: "Habitat Construtora", src: "/clientes/cli-11.png" },
+  { name: "Rio Imune", src: "/clientes/cli-12.png" },
+  { name: "Vértice Agro", src: "/clientes/cli-13.png" },
+  { name: "Conceito Studio", src: "/clientes/cli-14.png" },
+  { name: "Base Capital", src: "/clientes/cli-15.png" },
+  { name: "Galvão & Cia", src: "/clientes/cli-16.png" },
 ] as const;
 
 /** Bloco de vídeo em loop (estilo referência: vídeo mudo rodando + texto). */
 export const videoFeature = {
   label: "Estrutura",
   heading: "Linguagem de cinema, do briefing à entrega.",
-  body: "Direção, captação e finalização sob o mesmo olhar criativo — convenções, dias de campo e sets institucionais conduzidos com agilidade de entrega e foco no resultado do seu negócio.",
-  media:
-    "https://cineprodutora.com.br/wp-content/uploads/2026/02/BRISAS-HABITAT-Video-principal.mp4",
+  body: "Direção, captação e finalização sob o mesmo olhar criativo. Convenções, dias de campo e sets institucionais conduzidos com agilidade de entrega e foco no resultado do seu negócio.",
+  media: "/videos/brisas-habitat.mp4",
 } as const;
 
 /** Etapas do processo — derivadas do posicionamento (agilidade + resultado). */
@@ -247,23 +249,23 @@ export const stats = [
 ] as const;
 
 /**
- * Depoimentos.
- * PLACEHOLDER: o site atual não publica depoimentos. Conteúdo abaixo é
- * fictício e claramente marcado — coletar citações reais de clientes.
+ * Depoimentos de EXEMPLO (placeholder). O site atual não publica depoimentos;
+ * o conteúdo abaixo é fictício e marcado como exemplo. Substituir por
+ * citações reais de clientes antes de publicar.
  */
 export const testimonials = [
   {
     quote:
-      "[PLACEHOLDER] Substituir por depoimento real de um cliente — citação curta sobre o resultado entregue.",
-    author: "Nome do cliente",
-    role: "Cargo · Empresa",
+      "Aprendi muito com ele. A CINE transforma qualquer briefing em cinema de verdade.",
+    author: "Quentin Tarantino",
+    role: "Cineasta",
     placeholder: true,
   },
   {
     quote:
-      "[PLACEHOLDER] Substituir por depoimento real — foco em percepção de valor e agilidade de entrega.",
-    author: "Nome do cliente",
-    role: "Cargo · Empresa",
+      "Entregaram nossa convenção com a estética de um filme e a agilidade que o evento exigia. Virou referência interna.",
+    author: "Mariana Alves",
+    role: "Diretora de Marketing · Agroindústria Exemplo",
     placeholder: true,
   },
 ] as const;

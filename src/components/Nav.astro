@@ -1,10 +1,8 @@
 ---
 import { site, nav, whatsappHref } from "../data/site";
 
-const addressLabel = `${site.city} — ${site.state}`;
-const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${site.city} ${site.state}`,
-)}`;
+const addressLabel = `${site.city}, ${site.state}`;
+const mapsHref = "https://maps.app.goo.gl/xa8wuDXskPSEBKkA8";
 
 // ícones inline (14px) — sem dependências externas
 function icon(name: string): string {
@@ -39,25 +37,6 @@ const contacts = [
 ---
 
 <header class="fixed inset-x-0 top-0 z-40 bg-ink/70 backdrop-blur-md">
-  <!-- Barra de contato (canto superior direito) — desktop -->
-  <div class="hidden border-b border-line/50 lg:block">
-    <div class="mx-auto flex max-w-7xl items-center justify-end gap-6 px-8 py-2">
-      {
-        contacts.map((c) => (
-          <a
-            href={c.href}
-            target={c.external ? "_blank" : undefined}
-            rel={c.external ? "noopener" : undefined}
-            aria-label={c.label}
-            title={c.label}
-            class="text-ash transition-colors hover:text-accent"
-          >
-            <span set:html={icon(c.icon)} aria-hidden="true" />
-          </a>
-        ))
-      }
-    </div>
-  </div>
 
   <!-- Linha principal -->
   <nav aria-label="Navegação principal" class="border-b border-line/60">
@@ -67,11 +46,11 @@ const contacts = [
       <a
         href="#topo"
         class="flex items-center"
-        aria-label={`${site.name} — início`}
+        aria-label={`${site.name}, início`}
       >
         <img
           src="/cine-logo.png"
-          alt={`${site.name} — produtora audiovisual`}
+          alt={`${site.name}, produtora audiovisual`}
           width="56"
           height="56"
           class="h-11 w-auto sm:h-12"
@@ -94,6 +73,24 @@ const contacts = [
       </ul>
 
       <div class="flex items-center gap-3">
+        <!-- contatos: ícones à esquerda do botão (desktop) -->
+        <div class="hidden items-center gap-4 lg:flex">
+          {
+            contacts.map((c) => (
+              <a
+                href={c.href}
+                target={c.external ? "_blank" : undefined}
+                rel={c.external ? "noopener" : undefined}
+                aria-label={c.label}
+                title={c.label}
+                class="text-ash transition-colors hover:text-accent"
+              >
+                <span set:html={icon(c.icon)} aria-hidden="true" />
+              </a>
+            ))
+          }
+        </div>
+        <span class="hidden h-5 w-px bg-line lg:block" aria-hidden="true"></span>
         <a
           href={whatsappHref()}
           class="hidden rounded-full bg-accent px-5 py-2 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5 sm:inline-block"

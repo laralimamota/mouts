@@ -23,8 +23,13 @@ import { services, whatsappHref } from "../data/site";
       class="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5"
     >
       {
-        services.map((service) => (
-          <article class="reveal group relative aspect-[3/4] overflow-hidden rounded-3xl border border-line bg-ink-soft transition-transform duration-500 hover:z-20 hover:scale-[1.1] hover:border-accent/40 hover:shadow-2xl hover:shadow-black/60">
+        services.map((service, i) => (
+          <article
+            class:list={[
+              "reveal group relative flex min-h-[19rem] flex-col overflow-hidden rounded-3xl border border-line bg-ink-soft transition-transform duration-500 hover:z-20 hover:scale-[1.06] hover:border-accent/40 hover:shadow-2xl hover:shadow-black/60 sm:min-h-[22rem] lg:min-h-[26rem]",
+              i === services.length - 1 && "col-span-2 lg:col-span-1",
+            ]}
+          >
             <video
               class="absolute inset-0 h-full w-full object-cover opacity-65 transition-opacity duration-500 group-hover:opacity-100"
               data-autoplay
@@ -45,7 +50,7 @@ import { services, whatsappHref } from "../data/site";
               aria-hidden="true"
             />
 
-            <div class="absolute inset-x-0 bottom-0 p-4 text-center sm:p-6">
+            <div class="relative mt-auto p-4 text-center sm:p-6">
               <h3 class="font-display text-base font-bold leading-tight tracking-tight text-bone sm:text-lg lg:text-xl">
                 {service.title}
               </h3>
